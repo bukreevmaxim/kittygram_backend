@@ -7,6 +7,15 @@ from .serializers import AchievementSerializer, CatSerializer
 
 
 class CatViewSet(viewsets.ModelViewSet):
+    """
+    CRUD для котиков: список, создание, просмотр, изменение, удаление.
+
+    При создании кота его владельцем автоматически становится
+    текущий аутентифицированный пользователь (perform_create).
+    Список отдаётся с постраничной пагинацией.
+
+    """
+
     queryset = Cat.objects.all()
     serializer_class = CatSerializer
     pagination_class = PageNumberPagination 
@@ -16,6 +25,13 @@ class CatViewSet(viewsets.ModelViewSet):
 
 
 class AchievementViewSet(viewsets.ModelViewSet):
+    """
+    CRUD для достижений: список, создание, просмотр, изменение, удаление.
+
+    Список отдаётся целиком, без пагинации.
+
+    """
+
     queryset = Achievement.objects.all()
     serializer_class = AchievementSerializer
     pagination_class = None
